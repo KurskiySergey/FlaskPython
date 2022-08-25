@@ -1,0 +1,19 @@
+<ul class="navbar-nav text-uppercase">
+    {% if current_user.is_authenticated %}
+        {% for link in links %}
+            {% if link.name not in ['login', 'register'] %}
+                <li class="nav-item active">
+                    <a class="nav-link tm-nav-link" href="{{link.href}}">{{link.name}}<span class="sr-only"></span></a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for link in links %}
+            {% if link.name not in ['logout', 'account'] %}
+            <li class="nav-item active">
+                <a class="nav-link tm-nav-link" href="{{link.href}}">{{link.name}}<span class="sr-only"></span></a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</ul>
