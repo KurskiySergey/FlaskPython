@@ -2,9 +2,15 @@ from flask import render_template, Blueprint
 from flask_blog.models import User
 
 main = Blueprint('main', __name__)
-link_names = ["home", "about", "contact", "services", "login", "register", "account", "logout"]
+link_names = ["home", "login", "register", "account", "logout", "allpost", "create_post", "user_posts"]
+link_href = {
+    "create_post": "post/new",
+    "user_posts": "user/"
+}
+# "about", "contact", "services"
 routes = [
-    {"href": f"/{link_name.lower()}", "name": link_name.lower()} for link_name in link_names
+    {"href": f"/{link_name.lower() if link_href.get(link_name.lower()) is None else link_href[link_name.lower()]}",
+     "name": link_name.lower().replace("_", " ")} for link_name in link_names
 ]
 print(routes)
 

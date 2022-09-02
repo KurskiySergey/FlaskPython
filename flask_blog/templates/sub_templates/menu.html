@@ -2,14 +2,14 @@
     {% if current_user.is_authenticated %}
         {% for link in links %}
             {% if link.name not in ['login', 'register'] %}
-                <li class="nav-item active">
-                    <a class="nav-link tm-nav-link" href="{{link.href}}">{{link.name}}<span class="sr-only"></span></a>
+                <li class="nav-item active" >
+                    <a class="nav-link tm-nav-link" href="{% if link.name == 'user posts' %} {{link.href}}{{current_user.username}} {% else %} {{link.href}} {% endif %}">{{link.name}}<span class="sr-only"></span></a>
                 </li>
             {% endif %}
         {% endfor %}
     {% else %}
         {% for link in links %}
-            {% if link.name not in ['logout', 'account'] %}
+            {% if link.name not in ['logout', 'account', 'create_post', 'user posts'] %}
             <li class="nav-item active">
                 <a class="nav-link tm-nav-link" href="{{link.href}}">{{link.name}}<span class="sr-only"></span></a>
             </li>

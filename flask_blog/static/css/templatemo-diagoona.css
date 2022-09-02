@@ -338,3 +338,29 @@ textarea {
     .tm-service-img { margin-right: 0; }
     .tm-service-img-r { margin-left: 0; }
 }
+
+    .container{
+      margin-bottom: 0.8rem;
+    }
+
+    .card{
+      border-radius: 25px;
+      /* border-top-right-radius: 25px;
+      border-bottom-left-radius: 25px; */
+      background-color:  white;
+      box-shadow: 10px 15px 10px #4a4e69;
+      width: 92%;
+    }
+
+    .card-title{
+      margin-bottom: 0 !important;
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    small{
+      color: lightslategray;
+    }
+
+    p{
+      color: rgb(43, 37, 37);
+    }
