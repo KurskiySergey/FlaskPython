@@ -1,10 +1,24 @@
-{% extends "base.html" %}
-{% block container %}
+{% extends "layout.html" %}
+{% block content %}
     <div class="content-section" style="box-shadow: 10px 15px 10px #4a4e69;">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Авторизация</legend>
+                <legend class="border-bottom mb-4">Регистрация</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {% if form.email.errors %}
@@ -31,23 +45,23 @@
                         {{ form.password(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-                <div class="form-check">
-                    {{ form.remember(class="form-check-input") }}
-                    {{ form.remember.label(class="form-check-label") }}
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
-                <small class="text-muted ml-2">
-                    <a href="{{ url_for('users.reset_request') }}">Забыли пароль?</a>
-                </small>
-
-
             </div>
-            <small style="font-size: 15px; font-weight: 500;">
-                Нужен аккаунт? <a class="ml-2" href="{{ url_for('users.register') }}">Зарегистрируйтесь</a>
-            </small>
         </form>
-        <button class="nav-item active"><a class="nav-link tm-nav-link" href="{{url_for('main.home')}}">На главную</a></button>
     </div>
-{% endblock %}
+{% endblock content %}
